@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: build angular
+    name: build
     runs-on: ubuntu-latest
 
     steps:
@@ -22,6 +22,5 @@ jobs:
         node-version: 16
         cache: npm                   # <------------ この行を追加
     - run: npm ci 
-    - run: npm run lint
     - run: npm run build
     - run: echo complete!
