@@ -23,4 +23,5 @@ jobs:
         cache: npm                   # <------------ この行を追加
     - run: npm ci
     - run: npm --version
+    - run: node -v
     - run: echo complete!
