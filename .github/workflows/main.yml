@@ -20,7 +20,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16
-        cache: npm                   # <------------ この行を追加
+        cache: npm
+      env:
+        token: ${{ secrets.token }}
     - run: npm ci
     - run: npm --version
     - run: node -v
