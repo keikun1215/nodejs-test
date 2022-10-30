@@ -24,4 +24,4 @@ jobs:
     - run: npm ci
     - run: npm --version
     - run: node -v
-    - run: echo complete!
+    - run: node index.js
