@@ -14,6 +14,10 @@ const cmds = [
     name: 'ping',
     description: 'Send ping',
   },
+  {
+    name: 'help',
+    description: 'Send help'
+  }
 ]
 client.on('ready', () => {
   client.application.commands.set(cmds)
@@ -30,6 +34,9 @@ client.on('interactionCreate', async interaction => {
         color: 0x00FF00
       })]
     })
+  } else if (cmd == "help") {
+    await interaction.followUp(`**commands**
+${cmds.map(c=>`\`${c.name}\`: ${c.description}`).join("\n")}
   }
 })
 function e(obj){
