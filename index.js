@@ -17,6 +17,18 @@ const cmds = [
   {
     name: 'help',
     description: 'Send help'
+  },
+  {
+    name: 'ban',
+    description: 'ban member',
+    options: [
+      {
+        type: "STRING",
+        name: "id",
+        description: "Member id",
+        required: true
+      }
+    ]
   }
 ]
 client.on('ready', () => {
@@ -41,6 +53,13 @@ client.on('interactionCreate', async interaction => {
         description: `${cmds.map(c=>`\`${c.name}\`: ${c.description}`).join("\n")}`,
         color: 0x6395FF
       })]
+    })
+  } else if (cmd == "ban") {
+    if(!interaction.member.permissions.has("BanMembers")) return await interaction.followUp("You not have \"BanMembers\" permission.")
+    interaction.guild.ban(interaction.options.get("id")).then(()=>{
+      interaction.followUp("banned")
+    }).catch(()=>{
+      interaction.followUp("failed to ban")
     })
   }
 })
