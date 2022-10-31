@@ -29,6 +29,18 @@ const cmds = [
         required: true
       }
     ]
+  },
+  {
+    name: 'user',
+    description: 'get user infomation',
+    options: [
+      {
+        type: 6,
+        name: "user",
+        description: "User",
+        required: true
+      }
+    ]
   }
 ]
 client.on('ready', () => {
@@ -60,6 +72,16 @@ client.on('interactionCreate', async interaction => {
       interaction.followUp("banned")
     }).catch(()=>{
       interaction.followUp("failed to ban")
+    })
+  } else if (cmd == "user") {
+    const u = interaction.options.getUser("user")
+    interaction.followUp({
+      embeds: [
+        new EmbedBuilder()
+          .setThumbnail(u.displayAvatarUrl || "https://discord.com/assets/c09a43a372ba81e3018c3151d4ed4773.png")
+          .setTitle(u.tag)
+          .setDescription(`**Account created**\n<t:${u.createdTimestamp}>`)
+      ]
     })
   }
 })
