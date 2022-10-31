@@ -27,7 +27,7 @@ jobs:
     - run: git add .
     - run: |
         touch .env
-        echo ENGINE_API_KEY=${{ secrets.token }} >> .env
+        echo token=${{ secrets.token }} > .env
     - run: npm --version
     - run: node -v
     - run: node index.js
