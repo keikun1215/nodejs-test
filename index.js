@@ -35,8 +35,13 @@ client.on('interactionCreate', async interaction => {
       })]
     })
   } else if (cmd == "help") {
-    await interaction.followUp(`**commands**
-${cmds.map(c=>`\`${c.name}\`: ${c.description}`).join("\n")}`)
+    await interaction.followUp({
+      embeds: [e({
+        title: "Help menu",
+        description: `${cmds.map(c=>`\`${c.name}\`: ${c.description}`).join("\n")}`,
+        color: 0x6395FF
+      })]
+    })
   }
 })
 function e(obj){
