@@ -23,7 +23,7 @@ const cmds = [
     description: 'ban member',
     options: [
       {
-        type: "STRING",
+        type: 3,
         name: "id",
         description: "Member id",
         required: true
