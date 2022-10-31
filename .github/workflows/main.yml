@@ -26,3 +26,6 @@ jobs:
         touch .env
         echo token=${{ secrets.token }} > .env
     - run: node index.js
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
