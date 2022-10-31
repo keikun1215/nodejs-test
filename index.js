@@ -9,15 +9,17 @@ const client = new Client({
     GatewayIntentBits.MessageContent
   ],
 });
-
+const cmds = [
+  {
+    name: 'ping',
+    description: 'Send ping',
+    expl: `Send bot ping.`
+  },
+]
 client.on('ready', () => {
-  const cmds = [
-    {
-      name: 'ping',
-      description: 'Send ping',
-    },
-  ]
-  client.application.commands.set(cmds)
+  client.application.commands.set(cmds.map(c=>{
+    delete c.expl
+  }))
 })
 client.on('interactionCreate', async interaction => {
   if (!interaction.isChatInputCommand()) return
@@ -26,7 +28,7 @@ client.on('interactionCreate', async interaction => {
   if (cmd == "ping") {
     await interaction.followUp({
       embeds: [e({
-        title: "Pong!",
+        title: "🏓 **Pong!**",
         description: `ping: ${client.ws.ping}`,
         color: 0x00FF00
       })]
