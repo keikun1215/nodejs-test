@@ -80,7 +80,7 @@ client.on('interactionCreate', async interaction => {
         new EmbedBuilder()
           .setThumbnail(u.displayAvatarURL() || "https://discord.com/assets/c09a43a372ba81e3018c3151d4ed4773.png")
           .setTitle(u.tag)
-          .setDescription(`**Account created**\n<t:${u.createdTimestamp}:R>\n\n**ID**\n${u.id}`)
+          .setDescription(`**Account created**\n${moment(u.createdTimestamp)}\n\n**ID**\n${u.id}`)
       ]
     })
   }
