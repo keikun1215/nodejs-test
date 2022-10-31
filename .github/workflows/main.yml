@@ -23,7 +23,7 @@ jobs:
         cache: npm
     - run: npm ci
     - run: npm i dotenv
-    - run: git rm -r --cached .env
+    - run: git rm -r --cached .
     - run: npm --version
     - run: node -v
     - run: node index.js
