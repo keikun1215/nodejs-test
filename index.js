@@ -13,13 +13,10 @@ const cmds = [
   {
     name: 'ping',
     description: 'Send ping',
-    expl: `Send bot ping.`
   },
 ]
 client.on('ready', () => {
-  client.application.commands.set(cmds.map(c=>{
-    delete c.expl
-  }))
+  client.application.commands.set(cmds)
 })
 client.on('interactionCreate', async interaction => {
   if (!interaction.isChatInputCommand()) return
