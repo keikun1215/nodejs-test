@@ -9,5 +9,10 @@ const client = new Client({
   ],
 });
 
+client.on("messageCreate", message=>{
+  if(message.author.bot) return
+  message.channel.send(message.content)
+})
+
 require("dotenv").config()
 client.login(process.env.token)
