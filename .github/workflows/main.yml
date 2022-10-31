@@ -21,9 +21,9 @@ jobs:
       with:
         node-version: 16
         cache: npm
-      env:
-        token: ${{ secrets.token }}
     - run: npm ci
+    - run: npm i dotenv
+    - run: git rm -r --cached .env
     - run: npm --version
     - run: node -v
     - run: node index.js
