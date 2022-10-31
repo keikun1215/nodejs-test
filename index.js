@@ -36,7 +36,7 @@ client.on('interactionCreate', async interaction => {
     })
   } else if (cmd == "help") {
     await interaction.followUp(`**commands**
-${cmds.map(c=>`\`${c.name}\`: ${c.description}`).join("\n")}
+${cmds.map(c=>`\`${c.name}\`: ${c.description}`).join("\n")}`)
   }
 })
 function e(obj){
