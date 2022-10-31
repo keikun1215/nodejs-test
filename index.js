@@ -5,14 +5,43 @@ const client = new Client({
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildBans,
     GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMembers,
     GatewayIntentBits.MessageContent
   ],
 });
 
-client.on("messageCreate", message=>{
-  if(message.author.bot) return
-  message.channel.send(message.content)
+client.on('ready', () => {
+  const cmds = [
+    {
+      name: 'ping',
+      description: 'Send ping',
+    },
+  ]
+  client.application.commands.set(cmds)
 })
+client.on('interactionCreate', async interaction => {
+  if (!interaction.isChatInputCommand()) return
+  let cmd = interaction.commandName
+  await interaction.deferReply()
+  if (cmd == "ping") {
+    await interaction.followUp({
+      embeds: [e({
+        title: "Pong!",
+        description: `ping: ${client.ws.ping}`,
+        color: 0x00FF00
+      })]
+    })
+  }
+})
+function e(obj){
+  let ret = new EmbedBuilder()
+  ret
+    .setTitle(obj.title)
+  obj.color ? ret.setColor(obj.color) : void(0)
+  obj.description ? ret.setDescription(obj.description) : void(0)
+  obj.fields ? ret.addFields(obj.fields) : void(0)
+  return ret
+}
 
 require("dotenv").config()
 client.login(process.env.token)
