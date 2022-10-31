@@ -56,7 +56,7 @@ client.on('interactionCreate', async interaction => {
     })
   } else if (cmd == "ban") {
     if(!interaction.member.permissions.has("BanMembers")) return await interaction.followUp("You not have \"BanMembers\" permission.")
-    interaction.guild.ban(interaction.options.get("id")).then(()=>{
+    interaction.guild.bans.create(interaction.options.get("id")).then(()=>{
       interaction.followUp("banned")
     }).catch(()=>{
       interaction.followUp("failed to ban")
