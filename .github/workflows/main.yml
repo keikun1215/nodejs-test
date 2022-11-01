@@ -1,11 +1,11 @@
 name: Node.js CI
 
 on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
   push:
     branches: [ main ]
-    workflow_dispatch:
-    schedule: 
-      - cron: '8,28,48 * * * *'
   pull_request:
     branches: [ main ]
 
