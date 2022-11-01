@@ -1,4 +1,4 @@
-const { EmbedBuilder, Client, GatewayIntentBits } = require('discord.js')
+const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
@@ -97,6 +97,14 @@ client.on('interactionCreate', async interaction => {
     let message = interaction.targetMessage
     client.channels.cache.get("1036928987370373170").send({
       content: `Message link: ${message.url}`,
+      components: [
+        new ActionRowBuilder()
+          .addComponents(
+				new ButtonBuilder()
+					.setCustomId(`reportdel-${message.id}`)
+					.setLabel('Delete')
+					.setStyle(ButtonStyle.Primary),
+			)],
       embeds: [e({
         title: `${message.author.tag} | ${message.author.id}`,
         description: `${message.content}`,
@@ -111,6 +119,11 @@ client.on('interactionCreate', async interaction => {
     }).catch(()=>{
       interaction.followUp("Report failed")
     })
+  } else if (interaction.isButton()) {
+    if (interaction.customId.startsWith("reportdel-")) {
+      const [, mid] = interaction.customId.split("-")
+      client.messages.cache.get(mid).delete()
+    }
   }
 })
 function e(obj){
