@@ -98,7 +98,7 @@ client.on('interactionCreate', async interaction => {
     client.channels.cache.get("1036928987370373170").send({
       content: `Message link: ${message.url}`,
       embeds: [e({
-        title: `${message.athor.tag} | ${message.author.id}`,
+        title: `${message.author.tag} | ${message.author.id}`,
         description: `${message.content}`,
         footer: {
           text: `Report by ${interaction.user.tag}`,
