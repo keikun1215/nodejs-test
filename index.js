@@ -97,14 +97,13 @@ client.on('interactionCreate', async interaction => {
     let message = interaction.targetMessage
     client.channels.cache.get("1036928987370373170").send({
       content: `Message link: ${message.url}`,
-      components: [
-        new ActionRowBuilder()
+      components: [new ActionRowBuilder()
           .addComponents(
-				new ButtonBuilder()
-					.setCustomId(`reportdel-${message.id}`)
-					.setLabel('Delete')
-					.setStyle(ButtonStyle.Primary),
-			)],
+            new ButtonBuilder()
+              .setCustomId(`reportdel-${message.channel.id}-${message.id}`)
+              .setLabel('Delete')
+              .setStyle(ButtonStyle.Primary)
+      )],
       embeds: [e({
         title: `${message.author.tag} | ${message.author.id}`,
         description: `${message.content}`,
@@ -121,8 +120,8 @@ client.on('interactionCreate', async interaction => {
     })
   } else if (interaction.isButton()) {
     if (interaction.customId.startsWith("reportdel-")) {
-      const [, mid] = interaction.customId.split("-")
-      client.messages.cache.get(mid).delete()
+      const [, cid, mid] = interaction.customId.split("-")
+      client.channels.cache.get(cid).messages.cache.get(mid).delete()
     }
   }
 })
