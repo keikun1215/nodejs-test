@@ -106,6 +106,10 @@ client.on('interactionCreate', async interaction => {
         },
         thumbnail: message.author.displayAvatarURL()
       })]
+    }).then(()=>{
+      interaction.followUp("Report success")
+    }).catch(()=>{
+      interaction.followUp("Report failed")
     })
   }
 })
