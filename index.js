@@ -47,7 +47,6 @@ const cmds = [
     nameLocalizations: {
       "ja": "メッセージを通報"
     },
-    description: 'Report user',
     type: 3
   }
 ]
