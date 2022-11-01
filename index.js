@@ -114,9 +114,9 @@ client.on('interactionCreate', async interaction => {
         thumbnail: message.author.displayAvatarURL()
       })]
     }).then(()=>{
-      interaction.followUp("Report success")
+      interaction.followUp({ephemeral:true,content:"Report success"})
     }).catch(()=>{
-      interaction.followUp("Report failed")
+      interaction.followUp({ephemeral:true,content:"Report failed"})
     })
   } else if (interaction.isButton()) {
     if (interaction.customId.startsWith("reportdel-")) {
