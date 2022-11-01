@@ -117,7 +117,7 @@ function e(obj){
   obj.description ? ret.setDescription(obj.description) : void(0)
   obj.fields ? ret.addFields(obj.fields) : void(0)
   obj.footer ? ret.setFooter(obj.footer) : void(0)
-  obj.thumbnail ? ret.addThumbnail(obj.thumbnail) : void(0)
+  obj.thumbnail ? ret.setThumbnail(obj.thumbnail) : void(0)
   return ret
 }
 
