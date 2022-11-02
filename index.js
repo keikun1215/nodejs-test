@@ -1,5 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
-const https = require("https")
+const cjp = require("cjp")
 const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
@@ -111,7 +111,7 @@ client.on('interactionCreate', async interaction => {
         ]
       })
     } else if (cmd == "cjp") {
-      const cjpt = await cjp(interaction.options.get("jp") || "エラーにより日本語を取得できなかった")
+      const cjpt = generate(interaction.options.get("jp") || "エラーにより日本語を取得できなかった")
       interaction.followUp(cjpt)
     }
   } else if (interaction.isMessageContextMenuCommand()) {
@@ -168,7 +168,7 @@ function e(obj){
   obj.thumbnail ? ret.setThumbnail(obj.thumbnail) : void(0)
   return ret
 }
-function cjp(t) {
+/*function cjp(t) {
    return new Promise((re, rej) => {
      let request = https.request("https://hakunagi-api.vercel.app/cjp", {
        method: "POST",
@@ -194,6 +194,6 @@ function cjp(t) {
      }));
      request.end();
    })
- }
+ }*/
 require("dotenv").config()
 client.login(process.env.token)
