@@ -99,31 +99,41 @@ client.on('interactionCreate', async interaction => {
       })
     }
   } else if (interaction.isMessageContextMenuCommand()) {
-    await interaction.deferReply()
-    let message = interaction.targetMessage
-    client.channels.cache.get("1036928987370373170").send({
-      content: `Message link: ${message.url}`,
-      components: [new ActionRowBuilder()
-          .addComponents(
-            new ButtonBuilder()
-              .setCustomId(`reportdel-${message.channel.id}-${message.id}`)
-              .setLabel('Delete')
-              .setStyle(ButtonStyle.Primary)
-      )],
-      embeds: [e({
-        title: `${message.author.tag} | ${message.author.id}`,
-        description: `${message.content}`,
-        footer: {
-          text: `Report by ${interaction.user.tag}`,
-          iconURL: interaction.user.displayAvatarURL()
-        },
-        thumbnail: message.author.displayAvatarURL()
-      })]
-    }).then(()=>{
-      interaction.followUp({content:"Report success",ephemeral:true})
-    }).catch(()=>{
-      interaction.followUp({content:"Report failed",ephemeral:true})
-    })
+    if (interaction.commandName == "report") {
+      await interaction.deferReply({
+        ephemeral: true
+      })
+      let message = interaction.targetMessage
+      client.channels.cache.get("1036928987370373170").send({
+        content: `Message link: ${message.url}`,
+        components: [new ActionRowBuilder()
+            .addComponents(
+              new ButtonBuilder()
+                .setCustomId(`reportdel-${message.channel.id}-${message.id}`)
+                .setLabel('Delete')
+                .setStyle(ButtonStyle.Primary)
+        )],
+        embeds: [e({
+          title: `${message.author.tag} | ${message.author.id}`,
+          description: `${message.content}`,
+          footer: {
+            text: `Report by ${interaction.user.tag}`,
+            iconURL: interaction.user.displayAvatarURL()
+          },
+          thumbnail: message.author.displayAvatarURL()
+        })]
+      }).then(()=>{
+        interaction.followUp({
+          content: "Report success",
+          ephemeral: true
+        })
+      }).catch(()=>{
+        interaction.followUp({
+          content: "Report failed",
+          ephemeral: true
+        })
+      })
+    }
   } else if (interaction.isButton()) {
     if (interaction.customId.startsWith("reportdel-")) {
       const [, cid, mid] = interaction.customId.split("-")
