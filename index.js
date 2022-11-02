@@ -111,8 +111,7 @@ client.on('interactionCreate', async interaction => {
         ]
       })
     } else if (cmd == "cjp") {
-      console.log(interaction.options.get("jp"))
-      const cjpt = generate(interaction.options.get("jp"))
+      const cjpt = generate(interaction.options.get("jp").value)
       console.log(cjpt)
       interaction.followUp(cjpt)
     }
