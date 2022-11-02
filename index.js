@@ -181,6 +181,8 @@ function cjp(t) {
          d += c;
        });
        r.on("end", () => {
+         console.log(d)
+         console.log(JSON.parse(d))
          re(JSON.parse(d).text);
        })
      });
