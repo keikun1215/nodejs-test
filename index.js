@@ -111,7 +111,6 @@ client.on('interactionCreate', async interaction => {
         ]
       })
     } else if (cmd == "cjp") {
-      interaction.deferReply()
       const cjpt = await cjp(interaction.options.get("jp") || "エラーにより日本語を取得できなかった")
       interaction.followUp(cjpt)
     }
