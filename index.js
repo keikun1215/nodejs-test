@@ -169,14 +169,23 @@ function e(obj){
   return ret
 }
 function cjp(t) {
-   return new Promise(re => {
+   return new Promise((re, rej) => {
      let request = https.request("https://hakunagi-api.vercel.app/cjp", {
        method: "POST",
        headers: {
          "Content-Type": "Application/json"
        }
      }, r => {
-       re(r.data.text)
+       let d = []
+       r.on("data", c => {
+         d += c;
+       });
+       r.on("end", () => {
+         re(JSON.parse(Buffer.concat(d)).text);
+       })
+     });
+     request.on('error', (e) => {
+       rej(e)
      });
      request.write(JSON.stringify({
        text: t
