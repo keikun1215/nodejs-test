@@ -112,6 +112,7 @@ client.on('interactionCreate', async interaction => {
       })
     } else if (cmd == "cjp") {
       const cjpt = generate(interaction.options.get("jp") || "エラーにより日本語を取得できなかった")
+      console.log(cjpt)
       interaction.followUp(cjpt)
     }
   } else if (interaction.isMessageContextMenuCommand()) {
