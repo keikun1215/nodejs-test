@@ -1,4 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
+const { generate } = require("cjp")
 const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
@@ -26,6 +27,18 @@ const cmds = [
         type: 3,
         name: "id",
         description: "Member id",
+        required: true
+      }
+    ]
+  },
+  {
+    name: 'cjp',
+    description: '怪レい日本语',
+    options: [
+      {
+        type: 3,
+        name: "jp",
+        description: "text (Japanese)",
         required: true
       }
     ]
@@ -97,6 +110,9 @@ client.on('interactionCreate', async interaction => {
             .setDescription(`**Account created**\n${d.getFullYear()}/${d.getMonth()+1}/${d.getDate()}\n\n**ID**\n${u.id}`)
         ]
       })
+    } else if (cmd == "cjp") {
+      interaction.deferReply()
+      interaction.followUp(generate(interaction.options.get("text")))
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
