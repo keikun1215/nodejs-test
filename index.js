@@ -45,7 +45,13 @@ const cmds = [
   {
     name: 'report',
     nameLocalizations: {
-      "ja": "メッセージを通報"
+      "ja": "メッセージを通報",
+      "en-US": "Report message",
+      "en-GB": "Report message",
+      "bg": "доклад",
+      "ru": "отчет",
+      "zh-CN": "报告",
+      "zh-TW": "报告"
     },
     type: 3
   }
@@ -114,9 +120,9 @@ client.on('interactionCreate', async interaction => {
         thumbnail: message.author.displayAvatarURL()
       })]
     }).then(()=>{
-      interaction.followUp({ephemeral:true,content:"Report success"})
+      interaction.followUp({content:"Report success",ephemeral:true})
     }).catch(()=>{
-      interaction.followUp({ephemeral:true,content:"Report failed"})
+      interaction.followUp({content:"Report failed",ephemeral:true})
     })
   } else if (interaction.isButton()) {
     if (interaction.customId.startsWith("reportdel-")) {
