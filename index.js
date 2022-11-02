@@ -1,5 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
-const cjp = require("cjp")
+const { generate } = require("cjp")
 const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
