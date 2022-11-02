@@ -25,7 +25,6 @@ jobs:
         node-version: 16
         cache: npm
     - run: npm ci
-    - run: npm i cjp
     - run: |
         touch .env
         echo token=${{ secrets.token }} > .env
