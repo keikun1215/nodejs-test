@@ -1,5 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
-const { generate } = require("cjp")
+const https = require("https")
 const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
