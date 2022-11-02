@@ -1,5 +1,5 @@
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
-const { generate } = require("cjp")
+const https = require("https")
 const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
@@ -112,7 +112,8 @@ client.on('interactionCreate', async interaction => {
       })
     } else if (cmd == "cjp") {
       interaction.deferReply()
-      interaction.followUp(generate(interaction.options.get("jp") || "エラーにより日本語を取得できなかった"))
+      const cjpt = await cjp(interaction.options.get("jp") || "エラーにより日本語を取得できなかった")
+      interaction.followUp(cjpt)
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
@@ -167,6 +168,22 @@ function e(obj){
   obj.footer ? ret.setFooter(obj.footer) : void(0)
   obj.thumbnail ? ret.setThumbnail(obj.thumbnail) : void(0)
   return ret
+}
+function cjp(t) {
+  return new Promise(re => {
+    let request = https.request("https://cjp.vercel.app/api", {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json"
+      }
+    }, r => {
+      re(r.data)
+    });
+    request.write(JSON.stringify({
+      text: t
+    }));
+    request.end();
+  })
 }
 
 require("dotenv").config()
