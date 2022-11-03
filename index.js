@@ -2,7 +2,7 @@ require("dotenv").config()
 const dr = require('discord-rpc')
 const rpc = new dr.Client({ transport: 'ipc' })
 rpc.on('ready', () => {rpc.setActivity({details: 'details',state: 'state',startTimestamp: new Date(),})})
-rpc.login({ clientId: '1027882797303615538', clientSecret: process.env.token})
+rpc.login({ clientId: '1027882797303615538', accessToken: process.env.token})
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { generate } = require("cjp")
 const client = new Client({
