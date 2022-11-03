@@ -1,4 +1,4 @@
-const rpc = new require('discord-rpc').Client({ transport: 'ipc' })
+const rpc = new (require('discord-rpc').Client({ transport: 'ipc' }))
 rpc.on('ready', () => {rpc.setActivity({details: 'details',state: 'state',startTimestamp: new Date(),})})
 rpc.login({ clientId: '1027882797303615538' })
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
