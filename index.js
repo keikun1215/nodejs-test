@@ -10,7 +10,7 @@ rpc.on('ready', () => {
   })
 })
 
-rpc.login({ clientId: '1027882797303615538', accessToken: process.env.token})
+rpc.login({ clientId: '1027882797303615538'})
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { generate } = require("cjp")
 const client = new Client({
