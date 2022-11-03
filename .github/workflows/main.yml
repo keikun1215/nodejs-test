@@ -26,7 +26,7 @@ jobs:
         cache: npm
     - run: npm ci
     - run: npm i ffmpeg-static
-    - run: npm i sodium
+#    - run: npm i sodium
     - run: npm i @discordjs/opus
     - run: npm i @discordjs/voice
     - run: |
