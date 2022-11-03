@@ -1,6 +1,6 @@
 require("dotenv").config()
 const RPC = require('discord-rpc')
-const rpc = new RPC.Client({ transport: 'ipc' })
+const rpc = new RPC.Client({ transport: 'websocket' })
 
 rpc.on('ready', () => {
   rpc.setActivity({
