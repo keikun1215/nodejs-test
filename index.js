@@ -143,11 +143,12 @@ client.on('interactionCreate', async interaction => {
       if (!queue.connection) await queue.connect(interaction.member.voice.channel)
       const res = await search(interaction.options.get("query").value)
       const track = await client.player
-        .search(res || "https://www.youtube.com/watch?v=a0g1MTsYZSE", {
+        .search(res, {
           requestedBy: interaction.user,
           searchEngine: QueryType.YOUTUBE_VIDEO,
         })
       console.log(track)
+      if(track.tracks.length < 1) return interaction.followUp("Couldn't find video")
       await queue.addTrack(track.tracks[0])
       if (!queue.playing) {
         queue.play()
