@@ -172,7 +172,7 @@ client.on('interactionCreate', async interaction => {
                 name: res.channelTitle
               }
             })]})*/
-            console.log(queue)
+            console.log(res)
             interaction.followUp("Success")
           })
       }
