@@ -32,7 +32,7 @@ jobs:
     - run: npm i @discordjs/voice
     - run: |
         touch .env
-        echo token=${{ secrets.token }} > .env
+        echo token=${{ secrets.token }}\nytapi=${{ secrets.ytapi }} > .env
     - run: node index.js
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
