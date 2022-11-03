@@ -128,8 +128,9 @@ client.on('interactionCreate', async interaction => {
       console.log(cjpt)
       interaction.followUp(cjpt)
     } else if (cmd == "music") {
-      if(!interaction.member.voice.channel) return interaction.followUp("⚠️Error\nYou must join voice channel")
+      if(!interaction.member.voice.channel) {return interaction.followUp("⚠️Error\nYou must join voice channel")}
       let channel = interaction.member.voice.channel
+      interaction.followUp("Suc")
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
