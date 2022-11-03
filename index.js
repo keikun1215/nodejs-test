@@ -211,7 +211,7 @@ function search(q) {
     yts('jsconf', {maxResults:1,key:process.env.ytapi}, (err, results) => {
       if(err) reject(err);
       resolve(results[0])
-    })}
+    })
   })  
 }
 client.login(process.env.token)
