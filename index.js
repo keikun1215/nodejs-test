@@ -147,8 +147,7 @@ client.on('interactionCreate', async interaction => {
           requestedBy: interaction.user,
           searchEngine: QueryType.YOUTUBE_VIDEO,
         })
-        .then((x) => x.tracks[0]);
-      await queue.addTrack(track)
+      await queue.addTrack(track.tracks[0])
       if (!queue.playing) {
         queue.play()
           .then(()=>{
