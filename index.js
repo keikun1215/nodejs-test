@@ -33,6 +33,18 @@ const cmds = [
     ]
   },
   {
+    name: 'music',
+    description: 'Play music',
+    options: [
+      {
+        type: 3,
+        name: "query",
+        description: "Youtube search query",
+        required: true
+      }
+    ]
+  },
+  {
     name: 'cjp',
     description: '怪レい日本语',
     options: [
@@ -115,6 +127,9 @@ client.on('interactionCreate', async interaction => {
       const cjpt = generate(interaction.options.get("jp").value)
       console.log(cjpt)
       interaction.followUp(cjpt)
+    } else if (cmd == "music") {
+      if(!interaction.member.voice.channel) return interaction.followUp("⚠️Error\nYou must join voice channel")
+      let channel = interaction.member.voice.channel
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
