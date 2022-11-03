@@ -142,16 +142,25 @@ client.on('interactionCreate', async interaction => {
       });
       if (!queue.connection) await queue.connect(interaction.member.voice.channel)
       const res = await search(interaction.options.get("query").value)
-      console.log(res)
-      /*const track = await client.player
+      const track = await client.player
         .search(res || "https://www.youtube.com/watch?v=a0g1MTsYZSE", {
           requestedBy: interaction.user,
           searchEngine: QueryType.YOUTUBE_VIDEO,
         })
         .then((x) => x.tracks[0]);
       await queue.addTrack(track)
-      */
-      if (!queue.playing) queue.play();
+      if (!queue.playing) {
+        queue.play()
+          .then(()=>{
+            interaction.followUp({embeds:[e({
+              title: res.title,
+              image: res.thumbnails.default,
+              author: {
+                name: res.channelTitle
+              }
+            })]})
+          })
+      }
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
