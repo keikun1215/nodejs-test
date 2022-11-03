@@ -26,6 +26,7 @@ jobs:
         cache: npm
     - run: npm ci
     - run: npm i discord-player
+    - run: npm i youtube-search
     - run: npm i ffmpeg-static
     - run: npm i tweetnacl
     - run: npm i @discordjs/opus
