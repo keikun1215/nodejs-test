@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 
 app.listen(8080, () => {
-  console.log(require("ip").address);
+  console.log(require("ip").address());
 });
 
 app.get('/', (req, res)=> {
