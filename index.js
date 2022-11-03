@@ -139,6 +139,9 @@ client.on('interactionCreate', async interaction => {
 	adapterCreator: channel.guild.voiceAdapterCreator,
       });
       await vc.subscribe(player)
+      player.on('idle', () => {
+        player.play(createAudioResource("./ラッパのファンファーレ 3.mp3"));
+      });
       player.play(createAudioResource("./ラッパのファンファーレ 3.mp3"))
     }
   } else if (interaction.isMessageContextMenuCommand()) {
