@@ -1,7 +1,8 @@
-/*const dr = require('discord-rpc')
+require("dotenv").config()
+const dr = require('discord-rpc')
 const rpc = new dr.Client({ transport: 'ipc' })
 rpc.on('ready', () => {rpc.setActivity({details: 'details',state: 'state',startTimestamp: new Date(),})})
-rpc.login({ clientId: '1027882797303615538' })*/
+rpc.login({ clientId: '1027882797303615538', clientSecret: process.env.token})
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { generate } = require("cjp")
 const client = new Client({
@@ -174,32 +175,5 @@ function e(obj){
   obj.thumbnail ? ret.setThumbnail(obj.thumbnail) : void(0)
   return ret
 }
-/*function cjp(t) {
-   return new Promise((re, rej) => {
-     let request = https.request("https://hakunagi-api.vercel.app/cjp", {
-       method: "POST",
-       headers: {
-         "Content-Type": "Application/json"
-       }
-     }, r => {
-       let d = []
-       r.on("data", c => {
-         d += c;
-       });
-       r.on("end", () => {
-         console.log(d)
-         console.log(JSON.parse(d))
-         re(JSON.parse(d).text);
-       })
-     });
-     request.on('error', (e) => {
-       rej(e)
-     });
-     request.write(JSON.stringify({
-       text: t
-     }));
-     request.end();
-   })
- }*/
-require("dotenv").config()
+
 client.login(process.env.token)
