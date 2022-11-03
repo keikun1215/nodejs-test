@@ -1,6 +1,6 @@
 require("dotenv").config()
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
-const { joinVoiceChannel } = require('@discordjs/voice')
+const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
 const { generate } = require("cjp")
 const client = new Client({
   intents: [
@@ -132,11 +132,14 @@ client.on('interactionCreate', async interaction => {
     } else if (cmd == "music") {
       if(!interaction.member.voice.channel) {return interaction.followUp("⚠️Error\nYou must join voice channel")}
       let channel = interaction.member.voice.channel
+      let player = new AudioPlayer()
       const vc = joinVoiceChannel({
 	channelId: channel.id,
 	guildId: channel.guild.id,
 	adapterCreator: channel.guild.voiceAdapterCreator,
-});
+      });
+      await vc.subscribe(player)
+      player.play(createAudioResource("./ラッパのファンファーレ 3.mp3"))
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
