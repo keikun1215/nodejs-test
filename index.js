@@ -171,8 +171,6 @@ client.on('interactionCreate', async interaction => {
                 name: res.channelTitle
               }
             })]})
-            console.log(res)
-            interaction.followUp("Success")
           })
       }
     } else if (cmd == "stop") {
