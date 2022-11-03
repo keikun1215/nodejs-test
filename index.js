@@ -139,7 +139,7 @@ client.on('interactionCreate', async interaction => {
 	adapterCreator: channel.guild.voiceAdapterCreator,
       });
       await vc.subscribe(player)
-      player.play(createAudioResource("./ラッパのファンファーレ 3.mp3"))
+      player.play(createAudioResource("./ラッパのファンファーレ 3.mp3"))//
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
