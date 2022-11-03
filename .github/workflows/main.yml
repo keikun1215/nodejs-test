@@ -25,6 +25,7 @@ jobs:
         node-version: 16
         cache: npm
     - run: npm ci
+    - run: npm i ffmpeg-static
     - run: npm i @discordjs/voice
     - run: |
         touch .env
