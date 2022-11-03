@@ -1,6 +1,7 @@
 require("dotenv").config()
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
+const { Player, QueryType } = require("discord-player");
 const { generate } = require("cjp")
 const client = new Client({
   intents: [
@@ -13,6 +14,7 @@ const client = new Client({
     GatewayIntentBits.MessageContent
   ],
 });
+client.player = new Player(client)
 const cmds = [
   {
     name: 'ping',
@@ -132,14 +134,20 @@ client.on('interactionCreate', async interaction => {
     } else if (cmd == "music") {
       if(!interaction.member.voice.channel) {return interaction.followUp("⚠️Error\nYou must join voice channel")}
       let channel = interaction.member.voice.channel
-      let player = new AudioPlayer()
-      const vc = joinVoiceChannel({
-	channelId: channel.id,
-	guildId: channel.guild.id,
-	adapterCreator: channel.guild.voiceAdapterCreator,
+      const queue = client.player.createQueue(interaction.guild, {
+        metadata: {
+          channel: interaction.channel,
+        }
       });
-      await vc.subscribe(player)
-      setTimeout(()=>player.play(createAudioResource("./ラッパのファンファーレ 3.mp3")),3000)
+      if (!queue.connection) await queue.connect(interaction.member.voice.channel);
+      const track = await client.player
+        .search(interaction.options.get("query").value, {
+          requestedBy: interaction.user,
+          searchEngine: QueryType.YOUTUBE_VIDEO,
+        })
+        .then((x) => x.tracks[0]);
+      await queue.addTrack(track)
+      if (!queue.playing) queue.play();
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
