@@ -141,7 +141,7 @@ client.on('interactionCreate', async interaction => {
       });
       if (!queue.connection) await queue.connect(interaction.member.voice.channel);
       const track = await client.player
-        .search(interaction.options.get("query").value, {
+        .search(interaction.options.get("query").value || "https://www.youtube.com/watch?v=a0g1MTsYZSE", {
           requestedBy: interaction.user,
           searchEngine: QueryType.YOUTUBE_VIDEO,
         })
