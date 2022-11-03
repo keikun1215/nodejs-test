@@ -16,6 +16,8 @@ const client = new Client({
   ],
 });
 client.player = new Player(client)
+client.player.on("connectionError",()=>{})
+client.player.on("error",()=>{})
 const cmds = [
   {
     name: 'ping',
