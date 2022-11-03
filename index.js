@@ -178,6 +178,7 @@ client.on('interactionCreate', async interaction => {
       }
     } else if (cmd == "stop") {
       client.player.deleteQueue(interaction.guild.id)
+      interaction.followUp("✅ Success to leave the voice channel")
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
