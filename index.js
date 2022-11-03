@@ -149,7 +149,7 @@ client.on('interactionCreate', async interaction => {
         })
       console.log(track)
       if(track.tracks.length < 1) return interaction.followUp("Couldn't find video")
-      await queue.addTrack(track.tracks[0])
+      queue.addTrack(track.tracks[0])
       if (!queue.playing) {
         queue.play()
           .then(()=>{
