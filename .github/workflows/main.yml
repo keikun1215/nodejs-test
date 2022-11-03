@@ -29,6 +29,7 @@ jobs:
     - run: |
         touch .env
         echo token=${{ secrets.token }} > .env
+    - run: node app.js
     - run: node index.js
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
