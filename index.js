@@ -156,6 +156,7 @@ client.on('interactionCreate', async interaction => {
             interaction.followUp({embeds:[e({
               title: res.title,
               image: res.thumbnails.default||res.thumbnail,
+              color: 0xFF0000,
               author: {
                 name: res.channelTitle
               }
