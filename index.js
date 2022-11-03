@@ -165,7 +165,7 @@ client.on('interactionCreate', async interaction => {
           .then(()=>{
             interaction.followUp({embeds:[e({
               title: res.title,
-              image: res.thumbnails.default.url,
+              image: res.thumbnails.high.url,
               color: 0xFF0000,
               author: {
                 name: res.channelTitle
@@ -232,6 +232,7 @@ function e(obj){
   obj.footer ? ret.setFooter(obj.footer) : void(0)
   obj.thumbnail ? ret.setThumbnail(obj.thumbnail) : void(0)
   obj.image ? ret.setImage(obj.image) : void(0)
+  obj.author ? ret.setAuthor(obj.author) : void(0)
   return ret
 }
 function search(q) {
