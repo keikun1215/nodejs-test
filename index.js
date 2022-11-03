@@ -152,7 +152,7 @@ client.on('interactionCreate', async interaction => {
       await queue.addTrack(track.tracks[0])
       if (!queue.playing) {
         queue.play()
-          .then(()=>{
+          /*.then(()=>{
             interaction.followUp({embeds:[e({
               title: res.title,
               image: res.thumbnails.default||res.thumbnail.url,
@@ -161,7 +161,7 @@ client.on('interactionCreate', async interaction => {
                 name: res.channelTitle
               }
             })]})
-          })
+          })*/
       }
     }
   } else if (interaction.isMessageContextMenuCommand()) {
