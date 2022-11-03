@@ -141,13 +141,15 @@ client.on('interactionCreate', async interaction => {
         }
       });
       if (!queue.connection) await queue.connect(interaction.member.voice.channel)
-      const track = await client.player
-        .search(interaction.options.get("query").value || "https://www.youtube.com/watch?v=a0g1MTsYZSE", {
+      const res = await search(interaction.options.get("query").value)
+      /*const track = await client.player
+        .search(res || "https://www.youtube.com/watch?v=a0g1MTsYZSE", {
           requestedBy: interaction.user,
           searchEngine: QueryType.YOUTUBE_VIDEO,
         })
         .then((x) => x.tracks[0]);
       await queue.addTrack(track)
+      */
       if (!queue.playing) queue.play();
     }
   } else if (interaction.isMessageContextMenuCommand()) {
@@ -206,7 +208,7 @@ function e(obj){
 }
 function search(q) {
   return new Promise((resolve, reject)=>{
-    yts('jsconf', {maxResults:1,key:process.env.ytkey}, (err, results) => {
+    yts('jsconf', {maxResults:1,key:process.env.ytapi}, (err, results) => {
       if(err) reject(err);
       resolve(results[0])
     })}
