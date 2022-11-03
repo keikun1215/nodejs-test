@@ -25,10 +25,11 @@ jobs:
         node-version: 16
         cache: npm
     - run: npm ci
-    - run: npm i ffmpeg-static
-    - run: npm i tweetnacl
-    - run: npm i @discordjs/opus
-    - run: npm i @discordjs/voice
+    - run: npm i discord-player
+    #- run: npm i ffmpeg-static
+    #- run: npm i tweetnacl
+    #- run: npm i @discordjs/opus
+    #- run: npm i @discordjs/voice
     - run: |
         touch .env
         echo token=${{ secrets.token }} > .env
