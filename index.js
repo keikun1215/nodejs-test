@@ -52,6 +52,10 @@ const cmds = [
     ]
   },
   {
+    name: 'stop',
+    description: 'Stop music'
+  },
+  {
     name: 'cjp',
     description: '怪レい日本语',
     options: [
