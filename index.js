@@ -1,4 +1,5 @@
 require("dotenv").config()
+const yts = require('youtube-search')
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
 const { Player, QueryType } = require("discord-player");
@@ -139,7 +140,7 @@ client.on('interactionCreate', async interaction => {
           channel: interaction.channel,
         }
       });
-      if (!queue.connection) await queue.connect(interaction.member.voice.channel);
+      if (!queue.connection) await queue.connect(interaction.member.voice.channel)
       const track = await client.player
         .search(interaction.options.get("query").value || "https://www.youtube.com/watch?v=a0g1MTsYZSE", {
           requestedBy: interaction.user,
@@ -203,5 +204,12 @@ function e(obj){
   obj.thumbnail ? ret.setThumbnail(obj.thumbnail) : void(0)
   return ret
 }
-
+function search(q) {
+  return new Promise((resolve, reject)=>{
+    yts('jsconf', {maxResults:1,key:process.env.ytkey}, (err, results) => {
+      if(err) reject(err);
+      resolve(results[0])
+    })}
+  })  
+}
 client.login(process.env.token)
