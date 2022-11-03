@@ -1,5 +1,6 @@
 require("dotenv").config()
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
+const { joinVoiceChannel } = require('@discordjs/voice')
 const { generate } = require("cjp")
 const client = new Client({
   intents: [
@@ -131,7 +132,11 @@ client.on('interactionCreate', async interaction => {
     } else if (cmd == "music") {
       if(!interaction.member.voice.channel) {return interaction.followUp("⚠️Error\nYou must join voice channel")}
       let channel = interaction.member.voice.channel
-      interaction.followUp("Suc")
+      const vc = joinVoiceChannel({
+	channelId: channel.id,
+	guildId: channel.guild.id,
+	adapterCreator: channel.guild.voiceAdapterCreator,
+});
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
