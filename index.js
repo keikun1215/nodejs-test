@@ -143,7 +143,7 @@ client.on('interactionCreate', async interaction => {
       if (!queue.connection) await queue.connect(interaction.member.voice.channel)
       const res = await search(interaction.options.get("query").value)
       const track = await client.player
-        .search(res, {
+        .search(res.link, {
           requestedBy: interaction.user,
           searchEngine: QueryType.YOUTUBE_VIDEO,
         })
