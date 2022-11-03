@@ -158,7 +158,6 @@ client.on('interactionCreate', async interaction => {
           requestedBy: interaction.user,
           searchEngine: QueryType.YOUTUBE_VIDEO,
         })
-      console.log(track)
       if(track.tracks.length < 1) return interaction.followUp("Couldn't find video")
       queue.addTrack(track.tracks[0])
       if (!queue.playing) {
