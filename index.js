@@ -155,14 +155,16 @@ client.on('interactionCreate', async interaction => {
       if (!queue.playing) {
         queue.play()
           .then(()=>{
-            interaction.followUp({embeds:[e({
+            /*interaction.followUp({embeds:[e({
               title: res.title,
               image: res.thumbnails.default||res.thumbnail.url||res.thumbnail,
               color: 0xFF0000,
               author: {
                 name: res.channelTitle
               }
-            })]})
+            })]})*/
+            console.log(queue)
+            interaction.followUp("Success")
           })
       }
     }
