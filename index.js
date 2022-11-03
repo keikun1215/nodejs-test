@@ -138,6 +138,11 @@ client.on('interactionCreate', async interaction => {
       if(!interaction.member.voice.channel) {return interaction.followUp("⚠️Error\nYou must join voice channel")}
       let channel = interaction.member.voice.channel
       const queue = client.player.createQueue(interaction.guild, {
+        ytdlOptions: {
+          filter: 'audioonly',
+          highWaterMark: 1 << 30,
+          dlChunkSize: 0,
+        },
         metadata: {
           channel: interaction.channel,
         }
@@ -167,6 +172,8 @@ client.on('interactionCreate', async interaction => {
             interaction.followUp("Success")
           })
       }
+    } else if (cmd == "stop") {
+      client.player.deleteQueue(interaction.guild.id)
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
