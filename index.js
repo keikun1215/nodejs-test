@@ -152,16 +152,18 @@ client.on('interactionCreate', async interaction => {
       await queue.addTrack(track.tracks[0])
       if (!queue.playing) {
         queue.play()
-          /*.then(()=>{
-            interaction.followUp({embeds:[e({
+          .then(()=>{
+            console.log(res)
+            console.log(queue)
+            /*interaction.followUp({embeds:[e({
               title: res.title,
               image: res.thumbnails.default||res.thumbnail.url,
               color: 0xFF0000,
               author: {
                 name: res.channelTitle
               }
-            })]})
-          })*/
+            })]})*/
+          })
       }
     }
   } else if (interaction.isMessageContextMenuCommand()) {
