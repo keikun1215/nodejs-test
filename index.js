@@ -213,11 +213,10 @@ client.on('interactionCreate', async interaction => {
         description: `${client.player.getQueue(interaction.guild) ? client.player.getQueue(interaction.guild).tracks.map((t, i)=>`${i+1} - **${t.title}**`).join("\n") : "**No queue**"}`
       })]})
     } else if (cmd == "music/skip") {
-      if (client.player.getQueue(interaction.guild).skip()) {
-        interaction.followUp("✅ **Success to skip**")
-      } else {
-        interaction.followUp(":x: **Failed to skip**")
-      }
+      client.player.getQueue(interaction.guild) ?
+        {if (client.player.getQueue(interaction.guild).skip()) {interaction.followUp("✅ **Success to skip**")} else {interaction.followUp(":x: **Failed to skip**")}}
+        :
+        interaction.followUp(":x: **Failed to skip**(no queue)")
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
