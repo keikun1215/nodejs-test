@@ -77,6 +77,17 @@ const cmds = [
   },
   {
     type: 1,
+    name: "image",
+    description: "Image commands",
+    options: [{
+      type: 1,
+      name: "deceased",
+      description: "Portrait of the deceased user",
+      options: [{}]
+    }]
+  },
+  {
+    type: 1,
     name: 'cjp',
     description: '怪レい日本语',
     options: [
