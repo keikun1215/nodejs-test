@@ -205,7 +205,7 @@ client.on('interactionCreate', async interaction => {
       interaction.followUp({embeds:[e({
         color: 0xFF0000,
         title: "Queue",
-        description: `${client.player.getQueue(interaction.guild).tracks.map((t, i)=>`${i+1} - **${t.title}**`).join("\n")}`
+        description: `${client.player.getQueue(interaction.guild) ? client.player.getQueue(interaction.guild).tracks.map((t, i)=>`${i+1} - **${t.title}**`).join("\n") : "**No queue**"}`
       })]})
     }
   } else if (interaction.isMessageContextMenuCommand()) {
