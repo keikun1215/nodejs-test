@@ -110,8 +110,7 @@ client.on('ready', () => {
 })
 client.on('interactionCreate', async interaction => {
   if (interaction.isChatInputCommand()) {
-    interaction.getSubcommand() ? [interaction.commandName, interaction.getSubcommand()].join("/") : interaction.commandName
-    
+    let cmd = interaction.options.getSubcommand() ? [interaction.commandName, interaction.options.getSubcommand()].join("/") : interaction.commandName
     await interaction.deferReply()
     if (cmd == "ping") {
       await interaction.followUp({
