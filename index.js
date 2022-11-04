@@ -44,16 +44,19 @@ const cmds = [
     description: 'Play music',
     options: [
       {
-        type: 3,
-        name: "query",
-        description: "Youtube search query",
-        required: true
+        type: 1,
+        name: "play",
+        options: [{
+          type: 3,
+          name: "query",
+          description: "Youtube search query",
+          required: true
+        },{
+          name: 'stop',
+          description: 'Stop music and leave voice channel'
+        }]
       }
     ]
-  },
-  {
-    name: 'stop',
-    description: 'Stop music'
   },
   {
     name: 'cjp',
@@ -98,7 +101,8 @@ client.on('ready', () => {
 })
 client.on('interactionCreate', async interaction => {
   if (interaction.isChatInputCommand()) {
-    let cmd = interaction.commandName
+    interaction.getSubcommand() ? [interaction.commandName, interaction.getSubcommand()].join("/") : interaction.commandName
+    
     await interaction.deferReply()
     if (cmd == "ping") {
       await interaction.followUp({
@@ -138,7 +142,7 @@ client.on('interactionCreate', async interaction => {
       const cjpt = generate(interaction.options.get("jp").value)
       console.log(cjpt)
       interaction.followUp(cjpt)
-    } else if (cmd == "music") {
+    } else if (cmd == "music/play") {
       if(!interaction.member.voice.channel) {return interaction.followUp("⚠️Error\nYou must join voice channel")}
       let channel = interaction.member.voice.channel
       const queue = client.player.createQueue(interaction.guild, {
@@ -183,7 +187,7 @@ client.on('interactionCreate', async interaction => {
           }
         })]})
       }
-    } else if (cmd == "stop") {
+    } else if (cmd == "music/stop") {
       client.player.deleteQueue(interaction.guild.id)
       interaction.followUp("✅ Success to leave the voice channel")
     }
