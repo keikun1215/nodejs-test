@@ -20,14 +20,17 @@ client.player.on("connectionError",()=>{})
 client.player.on("error",()=>{})
 const cmds = [
   {
+    type: 1,
     name: 'ping',
     description: 'Send ping',
   },
   {
+    type: 1,
     name: 'help',
     description: 'Send help'
   },
   {
+    type: 1,
     name: 'ban',
     description: 'ban member',
     options: [
@@ -42,6 +45,7 @@ const cmds = [
   {
     name: 'music',
     description: 'Play music',
+    type: 1,
     options: [
       {
         type: 1,
@@ -60,6 +64,7 @@ const cmds = [
     ]
   },
   {
+    type: 1,
     name: 'cjp',
     description: '怪レい日本语',
     options: [
@@ -72,6 +77,7 @@ const cmds = [
     ]
   },
   {
+    type: 1,
     name: 'user',
     description: 'get user infomation',
     options: [
