@@ -159,7 +159,8 @@ client.on('interactionCreate', async interaction => {
           searchEngine: QueryType.YOUTUBE_VIDEO,
         })
       if(track.tracks.length < 1) return interaction.followUp("Couldn't find video")
-      queue.addTrack(track.tracks[0])
+      let ttr = track.tracks[0]
+      queue.addTrack(ttr)
       if (!queue.playing) {
         queue.play()
           .then(()=>{
@@ -172,6 +173,15 @@ client.on('interactionCreate', async interaction => {
               }
             })]})
           })
+      } else {
+        interaction.followUp({content:"✅ Track added to queue successfuly",embeds:[e({
+          title: ttr.title,
+          image: ttr.thumbnail,
+          color: 0xFF0000,
+          author: {
+           name: ttr.author
+          }
+        })]})
       }
     } else if (cmd == "stop") {
       client.player.deleteQueue(interaction.guild.id)
@@ -231,6 +241,7 @@ function e(obj){
   obj.thumbnail ? ret.setThumbnail(obj.thumbnail) : void(0)
   obj.image ? ret.setImage(obj.image) : void(0)
   obj.author ? ret.setAuthor(obj.author) : void(0)
+  obj.url ? ret.setURL(obj.url) : void(0)
   return ret
 }
 function search(q) {
