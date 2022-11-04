@@ -67,6 +67,11 @@ const cmds = [
         type: 1,
         name: "queue",
         description: "Show queue"
+      },
+      {
+        type: 1,
+        name: "skip",
+        description: "Skip track"
       }
     ]
   },
@@ -207,6 +212,12 @@ client.on('interactionCreate', async interaction => {
         title: "Queue",
         description: `${client.player.getQueue(interaction.guild) ? client.player.getQueue(interaction.guild).tracks.map((t, i)=>`${i+1} - **${t.title}**`).join("\n") : "**No queue**"}`
       })]})
+    } else if (cmd == "music/skip") {
+      if (client.player.getQueue(interaction.guild).skip()) {
+        interaction.followUp("✅ **Success to skip**")
+      } else {
+        interaction.followUp(":x: **Failed to skip**")
+      }
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
