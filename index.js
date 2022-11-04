@@ -44,12 +44,12 @@ const cmds = [
   },
   {
     name: 'music',
-    description: 'Play music',
     type: 1,
     options: [
       {
         type: 1,
         name: "play",
+        description: "Play music",
         options: [{
           type: 3,
           name: "query",
@@ -59,7 +59,8 @@ const cmds = [
       },
       {
         type: 1,
-        name: "stop"
+        name: "stop",
+        description: "Stop music and leave voice channel"
       }
     ]
   },
