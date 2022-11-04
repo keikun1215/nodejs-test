@@ -214,7 +214,11 @@ client.on('interactionCreate', async interaction => {
       })]})
     } else if (cmd == "music/skip") {
       if(client.player.getQueue(interaction.guild)) {
-        if (client.player.getQueue(interaction.guild).skip()) {interaction.followUp("✅ **Success to skip**")} else {interaction.followUp(":x: **Failed to skip**")}}
+        if (client.player.getQueue(interaction.guild).skip()) {
+          interaction.followUp("✅ **Success to skip**")
+        } else {
+          interaction.followUp(":x: **Failed to skip**")
+        }
       } else {
         interaction.followUp(":x: **Failed to skip**(no queue)")
       }
