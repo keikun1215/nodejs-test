@@ -2,8 +2,9 @@ require("dotenv").config()
 const yts = require('youtube-search')
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
-const { Player, QueryType } = require("discord-player");
+const { Player, QueryType } = require("discord-player")
 const { generate } = require("cjp")
+const axios = require("axios")
 const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
@@ -83,7 +84,12 @@ const cmds = [
       type: 1,
       name: "deceased",
       description: "Portrait of the deceased user",
-      options: [{}]
+      options: [{
+        type: 1,
+        name: "user",
+        description: "Deceased user",
+        required: false
+      }]
     }]
   },
   {
@@ -169,8 +175,10 @@ client.on('interactionCreate', async interaction => {
       })
     } else if (cmd == "cjp") {
       interaction.followUp(generate(interaction.options.get("jp").value))
+    } else if (cmd == "image/deceased") {
+      let avatarurl = interaction.options.getUser("user").displayAvatarURL()
     } else if (cmd == "music/play") {
-      if(!interaction.member.voice.channel) {return interaction.followUp("⚠️Error\nYou must join voice channel")}
+      if(!interaction.member.voice.channel) return interaction.followUp("⚠️Error\nYou must join voice channel")
       let channel = interaction.member.voice.channel
       const queue = client.player.createQueue(interaction.guild, {
         ytdlOptions: {
@@ -298,5 +306,12 @@ function search(q) {
       resolve(results[0])
     })
   })  
+}
+function shimg (l) {
+  return new Promise((res, rej)=>{
+    axios.get(l, {
+      responseType: "arraybuffer",
+    }).then(r=>resolve(Buffer.from(r.data, "base64")))
+  })
 }
 client.login(process.env.token)
