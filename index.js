@@ -62,6 +62,11 @@ const cmds = [
         type: 1,
         name: "stop",
         description: "Stop music and leave voice channel"
+      },
+      {
+        type: 1,
+        name: "queue",
+        description: "Show queue"
       }
     ]
   },
