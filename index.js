@@ -51,10 +51,11 @@ const cmds = [
           name: "query",
           description: "Youtube search query",
           required: true
-        },{
-          name: 'stop',
-          description: 'Stop music and leave voice channel'
         }]
+      },
+      {
+        type: 1,
+        name: "stop"
       }
     ]
   },
@@ -178,7 +179,7 @@ client.on('interactionCreate', async interaction => {
             })]})
           })
       } else {
-        interaction.followUp({content:"✅ Track added to queue successfuly",embeds:[e({
+        interaction.followUp({content:"✅ **Track added to queue successfuly**",embeds:[e({
           title: ttr.title,
           image: ttr.thumbnail,
           color: 0xFF0000,
@@ -189,7 +190,7 @@ client.on('interactionCreate', async interaction => {
       }
     } else if (cmd == "music/stop") {
       client.player.deleteQueue(interaction.guild.id)
-      interaction.followUp("✅ Success to leave the voice channel")
+      interaction.followUp("✅ **Success to leave the voice channel**")
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
