@@ -147,9 +147,7 @@ client.on('interactionCreate', async interaction => {
         ]
       })
     } else if (cmd == "cjp") {
-      const cjpt = generate(interaction.options.get("jp").value)
-      console.log(cjpt)
-      interaction.followUp(cjpt)
+      interaction.followUp(generate(interaction.options.get("jp").value))
     } else if (cmd == "music/play") {
       if(!interaction.member.voice.channel) {return interaction.followUp("⚠️Error\nYou must join voice channel")}
       let channel = interaction.member.voice.channel
@@ -198,6 +196,12 @@ client.on('interactionCreate', async interaction => {
     } else if (cmd == "music/stop") {
       client.player.deleteQueue(interaction.guild.id)
       interaction.followUp("✅ **Success to leave the voice channel**")
+    } else if (cmd == "music/queue") {
+      interaction.followUp({embeds:[e({
+        color: 0xFF0000,
+        title: "Queue",
+        description: `${client.player.getQueue(interaction.guild).tracks.map((t, i)=>`${i+1} - **${t.title}**`).join("\n")}`
+      })]})
     }
   } else if (interaction.isMessageContextMenuCommand()) {
     if (interaction.commandName == "report") {
