@@ -45,6 +45,7 @@ const cmds = [
   {
     name: 'music',
     type: 1,
+    description: "Music commands",
     options: [
       {
         type: 1,
