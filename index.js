@@ -180,7 +180,7 @@ client.on('interactionCreate', async interaction => {
       let avatar = await shimg((interaction.options.getUser("user") || interaction.user).displayAvatarURL())
       let grs = await sharp(avatar)
         .grayscale()
-        .png()
+        .webp({quality: 100})
         .toBuffer()
       interaction.followUp({files:[grs]})
     } else if (cmd == "music/play") {
