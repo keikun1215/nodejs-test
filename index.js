@@ -5,6 +5,7 @@ const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discord
 const { Player, QueryType } = require("discord-player")
 const { generate } = require("cjp")
 const axios = require("axios")
+const sharp = require("sharp")
 const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
@@ -85,7 +86,7 @@ const cmds = [
       name: "deceased",
       description: "Portrait of the deceased user",
       options: [{
-        type: 1,
+        type: 6,
         name: "user",
         description: "Deceased user",
         required: false
@@ -176,7 +177,11 @@ client.on('interactionCreate', async interaction => {
     } else if (cmd == "cjp") {
       interaction.followUp(generate(interaction.options.get("jp").value))
     } else if (cmd == "image/deceased") {
-      let avatarurl = interaction.options.getUser("user").displayAvatarURL()
+      let avatar = await shimg(interaction.options.getUser("user").displayAvatarURL())
+      let grs = await sharp(avatar)
+        .grayscale()
+        .toBuffer()
+      interaction.followUp({files:[grs.toString('base64')]})
     } else if (cmd == "music/play") {
       if(!interaction.member.voice.channel) return interaction.followUp("⚠️Error\nYou must join voice channel")
       let channel = interaction.member.voice.channel
