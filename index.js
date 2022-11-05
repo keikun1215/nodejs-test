@@ -177,7 +177,7 @@ client.on('interactionCreate', async interaction => {
     } else if (cmd == "cjp") {
       interaction.followUp(generate(interaction.options.get("jp").value))
     } else if (cmd == "image/deceased") {
-      let avatar = await shimg(interaction.options.getUser("user").displayAvatarURL())
+      let avatar = await shimg((interaction.options.getUser("user") || interaction.user).displayAvatarURL())
       let grs = await sharp(avatar)
         .grayscale()
         .toBuffer()
@@ -316,7 +316,7 @@ function shimg (l) {
   return new Promise((res, rej)=>{
     axios.get(l, {
       responseType: "arraybuffer",
-    }).then(r=>resolve(Buffer.from(r.data, "base64")))
+    }).then(r=>res(Buffer.from(r.data, "base64")))
   })
 }
 client.login(process.env.token)
