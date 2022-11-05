@@ -25,6 +25,8 @@ jobs:
         node-version: 16
         cache: npm
     - run: npm ci
+    - run: npm i axios
+    - run: npm i sharp
     - run: npm i discord-player
     - run: npm i youtube-search
     - run: npm i ffmpeg-static
