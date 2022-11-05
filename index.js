@@ -181,7 +181,7 @@ client.on('interactionCreate', async interaction => {
       let grs = await sharp(avatar)
         .webp({quality: 100, lossless: true})
         .grayscale()
-        .resize({width:431,height:550,fit:"inside"})
+        .resize({width:481,height:589,fit:"inside"})
         .flatten({ background: { r: 255, g: 255, b: 255 } })
         .webp({quality: 100, lossless: true})
         .toBuffer()
