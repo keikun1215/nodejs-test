@@ -179,6 +179,7 @@ client.on('interactionCreate', async interaction => {
     } else if (cmd == "image/deceased") {
       let avatar = await shimg((interaction.options.getUser("user") || interaction.user).displayAvatarURL())
       let grs = await sharp(avatar)
+        .webp({quality: 100, lossless: true})
         .grayscale()
         .webp({quality: 100, lossless: true})
         .toBuffer()
