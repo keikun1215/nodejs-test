@@ -183,7 +183,12 @@ client.on('interactionCreate', async interaction => {
         .grayscale()
         .webp({quality: 100, lossless: true})
         .toBuffer()
-      interaction.followUp({files:[{attachment:grs,name:"deceased.webp",description:""}]})
+      let iei = await sharp(grs)
+        .composite([{
+          input: "38F73508-369C-462C-89AD-349807C7DB14.png"
+        }])
+        .webp({quality: 100, lossless: true})
+      interaction.followUp({files:[{attachment:iei,name:"deceased.webp",description:""}]})
     } else if (cmd == "music/play") {
       if(!interaction.member.voice.channel) return interaction.followUp("⚠️Error\nYou must join voice channel")
       let channel = interaction.member.voice.channel
