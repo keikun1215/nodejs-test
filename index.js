@@ -181,7 +181,7 @@ client.on('interactionCreate', async interaction => {
       let grs = await sharp(avatar)
         .grayscale()
         .toBuffer()
-      interaction.followUp({files:[grs.toString('base64')]})
+      interaction.followUp({files:[grs]})
     } else if (cmd == "music/play") {
       if(!interaction.member.voice.channel) return interaction.followUp("⚠️Error\nYou must join voice channel")
       let channel = interaction.member.voice.channel
