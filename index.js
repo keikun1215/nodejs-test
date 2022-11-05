@@ -187,9 +187,11 @@ client.on('interactionCreate', async interaction => {
         .toBuffer()
       let iei = await sharp("transback.png")
         .composite([{
-          input: "38F73508-369C-462C-89AD-349807C7DB14.png"
+          input: "untrans.png"
         },{
           input: grs,
+        },{
+          input: "38F73508-369C-462C-89AD-349807C7DB14.png"
         }])
         .webp({quality: 100, lossless: true})
         .toBuffer()
