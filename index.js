@@ -180,7 +180,8 @@ client.on('interactionCreate', async interaction => {
       let avatar = await shimg((interaction.options.getUser("user") || interaction.user).displayAvatarURL())
       let grs = await sharp(avatar)
         .grayscale()
-        .toBuffer()
+        .png()
+        .toBuffer({ resolveWithObject: true })
       interaction.followUp({files:[grs]})
     } else if (cmd == "music/play") {
       if(!interaction.member.voice.channel) return interaction.followUp("⚠️Error\nYou must join voice channel")
