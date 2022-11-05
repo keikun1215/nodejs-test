@@ -177,7 +177,7 @@ client.on('interactionCreate', async interaction => {
     } else if (cmd == "cjp") {
       interaction.followUp(generate(interaction.options.get("jp").value))
     } else if (cmd == "image/deceased") {
-      let avatar = await shimg((interaction.options.getUser("user") || interaction.user).displayAvatarURL())
+      let avatar = await shimg((interaction.options.getUser("user") || interaction.user).displayAvatarURL() || "https://discord.com/assets/c09a43a372ba81e3018c3151d4ed4773.png")
       let grs = await sharp(avatar)
         .webp({quality: 100, lossless: true})
         .grayscale()
