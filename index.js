@@ -186,7 +186,8 @@ client.on('interactionCreate', async interaction => {
         .toBuffer()
       let iei = await sharp("38F73508-369C-462C-89AD-349807C7DB14.png")
         .composite([{
-          input: grs
+          input: grs,
+          blend: "overlay"
         }])
         .webp({quality: 100, lossless: true})
         .toBuffer()
