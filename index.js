@@ -181,7 +181,7 @@ client.on('interactionCreate', async interaction => {
       let grs = await sharp(avatar)
         .webp({quality: 100, lossless: true})
         .grayscale()
-        .resize({width:431,height:542,fit:"contain"})
+        .resize({width:431,height:550,fit:"contain"})
         .webp({quality: 100, lossless: true})
         .toBuffer()
       let iei = await sharp("38F73508-369C-462C-89AD-349807C7DB14.png")
