@@ -185,10 +185,11 @@ client.on('interactionCreate', async interaction => {
         .flatten({ background: { r: 255, g: 255, b: 255 } })
         .webp({quality: 100, lossless: true})
         .toBuffer()
-      let iei = await sharp("38F73508-369C-462C-89AD-349807C7DB14.png")
+      let iei = await sharp("transback.png")
         .composite([{
+          input: "38F73508-369C-462C-89AD-349807C7DB14.png"
+        },{
           input: grs,
-          blend: "overlay"
         }])
         .webp({quality: 100, lossless: true})
         .toBuffer()
