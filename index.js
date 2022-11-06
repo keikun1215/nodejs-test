@@ -1,6 +1,4 @@
 require("dotenv").config()//dotenv
-const Keyv = require("@keyv/sqlite")
-const money = new Keyv("sqlite://db.sqlite", { table: "moneys" })
 const yts = require('youtube-search')
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
@@ -155,9 +153,6 @@ client.on('interactionCreate', async interaction => {
           color: 0x00FF00
         })]
       })
-    } else if (cmd == "test") {
-      let t = await money.get("foo")
-      await interaction.followUp(t)
     } else if (cmd == "help") {
       await interaction.followUp({
         embeds: [e({
