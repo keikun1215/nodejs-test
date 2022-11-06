@@ -23,10 +23,7 @@ client.player = new Player(client)
 client.player.on("connectionError",()=>{})
 client.player.on("error",()=>{});
 (async () => {
-  await money.set("foo", "test");
-  const temp = await money.get("foo");
-   console.log("a")
-  console.log(temp);
+  await money.set("foo", "test")
 })();
 const cmds = [
   {
@@ -84,6 +81,11 @@ const cmds = [
         description: "Skip track"
       }
     ]
+  },
+  {
+    type: 1,
+    name: "test",
+    description: "test command"
   },
   {
     type: 1,
