@@ -22,6 +22,13 @@ const client = new Client({
 client.player = new Player(client)
 client.player.on("connectionError",()=>{})
 client.player.on("error",()=>{})
+db.serialize(() => {
+  db.run("create table if not exists levels (id,level,messages)");
+  db.run("insert into members(id,level,messages) values(1919,1,0)")
+  db.each("select * from members", (err, row) => {
+    console.log(`${row.id} ${row.level}`);
+  });
+});
 const cmds = [
   {
     type: 1,
