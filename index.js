@@ -1,6 +1,6 @@
 require("dotenv").config()//dotenv
-const sqlite3 = require("sqlite3")
-const [db_l] = [new sqlite3.Database("./levels.db")]
+const Keyv = require("@keyv/sqlite")
+const money = new Keyv("sqlite://db.sqlite", { table: "moneys" })
 const yts = require('youtube-search')
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
@@ -22,14 +22,11 @@ const client = new Client({
 client.player = new Player(client)
 client.player.on("connectionError",()=>{})
 client.player.on("error",()=>{})
-db_l.serialize(() => {
-  db_l.run("create table if not exists levels (id,level,messages)");
-  db_l.run("insert into levels(id,level,messages) values(1919,1,0)")
-  db_l.each("select * from levels", (err, row) => {
-    console.log(row);
-    console.log(err)
-  });
-});
+(async () => {
+  await money.set("foo", "test");
+  const temp = await money.get("foo");
+  console.log(temp);
+})();
 const cmds = [
   {
     type: 1,
