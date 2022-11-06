@@ -23,10 +23,10 @@ client.player = new Player(client)
 client.player.on("connectionError",()=>{})
 client.player.on("error",()=>{})
 db_l.serialize(() => {
-  //db_l.run("create table if not exists levels (id,level,messages)");
-  //db_l.run("insert into levels(id,level,messages) values(1919,1,0)")
+  db_l.run("create table if not exists levels (id,level,messages)");
+  db_l.run("insert into levels(id,level,messages) values(1919,1,0)")
   db_l.each("select * from levels", (err, row) => {
-    console.log(`${row.id} ${row.level}`);
+    console.log(row);
   });
 });
 const cmds = [
