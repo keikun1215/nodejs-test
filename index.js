@@ -1,4 +1,6 @@
 require("dotenv").config()//dotenv
+const sqlite3 = require("sqlite3")
+const [db_l] = [new sqlite3.Database("./levels.db")]
 const yts = require('youtube-search')
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
