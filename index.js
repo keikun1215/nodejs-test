@@ -25,6 +25,7 @@ client.player.on("error",()=>{});
 (async () => {
   await money.set("foo", "test");
   const temp = await money.get("foo");
+   console.log("a")
   console.log(temp);
 })();
 const cmds = [
