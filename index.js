@@ -21,10 +21,7 @@ const client = new Client({
 });
 client.player = new Player(client)
 client.player.on("connectionError",()=>{})
-client.player.on("error",()=>{});
-(async () => {
-  await money.set("foo", "test")
-})();
+client.player.on("error",()=>{})
 const cmds = [
   {
     type: 1,
