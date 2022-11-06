@@ -158,6 +158,9 @@ client.on('interactionCreate', async interaction => {
           color: 0x00FF00
         })]
       })
+    } else if (cmd == "test") {
+      let t = await money.get("foo")
+      await interaction.followUp(t)
     } else if (cmd == "help") {
       await interaction.followUp({
         embeds: [e({
