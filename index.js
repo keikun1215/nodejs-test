@@ -21,7 +21,7 @@ const client = new Client({
 });
 client.player = new Player(client)
 client.player.on("connectionError",()=>{})
-client.player.on("error",()=>{})
+client.player.on("error",()=>{});
 (async () => {
   await money.set("foo", "test");
   const temp = await money.get("foo");
