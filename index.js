@@ -27,6 +27,7 @@ db_l.serialize(() => {
   db_l.run("insert into levels(id,level,messages) values(1919,1,0)")
   db_l.each("select * from levels", (err, row) => {
     console.log(row);
+    console.log(err)
   });
 });
 const cmds = [
