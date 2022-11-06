@@ -22,10 +22,10 @@ const client = new Client({
 client.player = new Player(client)
 client.player.on("connectionError",()=>{})
 client.player.on("error",()=>{})
-db.serialize(() => {
-  db.run("create table if not exists levels (id,level,messages)");
-  db.run("insert into levels(id,level,messages) values(1919,1,0)")
-  db.each("select * from members", (err, row) => {
+db_l.serialize(() => {
+  db_l.run("create table if not exists levels (id,level,messages)");
+  db_l.run("insert into levels(id,level,messages) values(1919,1,0)")
+  db_l.each("select * from members", (err, row) => {
     console.log(`${row.id} ${row.level}`);
   });
 });
