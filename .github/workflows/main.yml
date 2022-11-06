@@ -25,7 +25,7 @@ jobs:
         node-version: 16
         cache: npm
     - run: npm ci
-    - run: npm i sqlite3
+    - run: npm i @keyv/sqlite
     - run: npm i axios
     - run: npm i sharp
     - run: npm i discord-player
