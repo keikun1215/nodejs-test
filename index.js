@@ -151,13 +151,8 @@ client.on('messageCreate', message => {
       spm[String(message.author.id)].mps = 1
       spm[String(message.author.id)].last = Date.now()
     }
-  } else {
-    spm[String(message.author.id)] = {
-      last: Date.now(),
-      mps: 1
-    }
-  }
-  message.channel.send(`mps: ${spm[String(message.author.id)].mps}\nd: ${Date.now() - spm[String(message.author.id)].last}`)
+  } else spm[String(message.author.id)] = {last: Date.now(), mps: 1}
+  if (spm[String(message.author.id)].mps >= 3) message.reply("お前それスパムだぞ黙れ")
 })
 client.on('interactionCreate', async interaction => {
   if (interaction.isChatInputCommand()) {
