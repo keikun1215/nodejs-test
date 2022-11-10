@@ -145,7 +145,7 @@ let spm = {}
 client.on('messageCreate', message => {
   if(message.author.bot) return
   if(spm[String(message.author.id)]) {
-    if(Date.now() - spm[String(message.author.id)].last <= 2000) {
+    if(Date.now() - spm[String(message.author.id)].last <= 1500) {
       spm[String(message.author.id)].mps++
     } else {
       spm[String(message.author.id)].mps = 1
