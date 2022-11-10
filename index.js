@@ -152,8 +152,10 @@ client.on('messageCreate', message => {
       spm[String(message.author.id)].last = Date.now()
     }
   } else spm[String(message.author.id)] = {last: Date.now(), mps: 1}
-  if (spm[String(message.author.id)].mps >= 3) message.reply("お前それスパムだぞ黙れ")
-  message.reply(JSON.stringify(spm[String(message.author.id)], "", "  "))
+  if (spm[String(message.author.id)].mps >= 3) {
+    message.channel.bulkDelete(3, m => m.author.id == message.author.id)
+    message.channel.send("🗑 **Deleted spam message**")
+  }
 })
 client.on('interactionCreate', async interaction => {
   if (interaction.isChatInputCommand()) {
