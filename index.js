@@ -149,6 +149,7 @@ client.on('messageCreate', message => {
       spm[String(message.author.id)].mps++
     } else {
       spm[String(message.author.id)].mps = 1
+      spm[String(message.author.id)].last = Date.now()
     }
   } else {
     spm[String(message.author.id)] = {
