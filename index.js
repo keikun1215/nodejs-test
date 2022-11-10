@@ -156,7 +156,7 @@ client.on('messageCreate', message => {
       mps: 1
     }
   }
-  message.channel.send(`mps: ${spm[String(message.author.id)].mps}`)
+  message.channel.send(`mps: ${spm[String(message.author.id)].mps}\nd: ${Date.now() - spm[String(message.author.id)].last}`)
 })
 client.on('interactionCreate', async interaction => {
   if (interaction.isChatInputCommand()) {
