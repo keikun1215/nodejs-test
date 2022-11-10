@@ -145,14 +145,14 @@ let spm = {}
 client.on('messageCreate', message => {
   if(message.author.bot) return
   if(spm[String(message.author.id)]) {
-    if(Date.now() - spm[String(message.author.id)].last <= 1000) {
+    if(Date.now() - spm[String(message.author.id)].last <= 2000) {
       spm[String(message.author.id)].mps++
     } else {
       spm[String(message.author.id)].mps = 1
       spm[String(message.author.id)].last = Date.now()
     }
   } else spm[String(message.author.id)] = {last: Date.now(), mps: 1}
-  if (spm[String(message.author.id)].mps>= 2) {
+  if (spm[String(message.author.id)].mps>= 3) {
     message.channel.bulkDelete(3, m => m.author.id == message.author.id)
     message.channel.send("🗑 **Deleted spam message**")
   }
