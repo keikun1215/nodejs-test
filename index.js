@@ -152,8 +152,7 @@ client.on('messageCreate', message => {
       spm[String(message.author.id)].last = Date.now()
     }
   } else spm[String(message.author.id)] = {last: Date.now(), mps: 1}
-  if (spm[String(message.author.id)].mps >= 3) {
-    message.reply("え")
+  if (spm[String(message.author.id)].mps>= 2) {
     message.channel.bulkDelete(3, m => m.author.id == message.author.id)
     message.channel.send("🗑 **Deleted spam message**")
   }
