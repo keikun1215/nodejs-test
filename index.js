@@ -153,6 +153,7 @@ client.on('messageCreate', message => {
     }
   } else spm[String(message.author.id)] = {last: Date.now(), mps: 1}
   if (spm[String(message.author.id)].mps >= 3) message.reply("お前それスパムだぞ黙れ")
+  message.reply(JSON.stringify(spm[String(message.author.id)], "", "  "))
 })
 client.on('interactionCreate', async interaction => {
   if (interaction.isChatInputCommand()) {
