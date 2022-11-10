@@ -141,6 +141,16 @@ const cmds = [
 client.on('ready', () => {
   client.application.commands.set(cmds)
 })
+let spm = {}
+client.on('messageCreate', message => {
+  if(message.author.bot) return
+  if(spm[String(message.author.id)]) {if(Date.now() - spm[String(message.author.id)].last <= 1000) spm[String(message.author.id)].mps++}
+  spm[String(message.author.id)] = {
+    last: Date.now(),
+    mps: 1
+  }
+  message.channel.send(`mps: ${spm[String(message.author.id)].mps}`)
+})
 client.on('interactionCreate', async interaction => {
   if (interaction.isChatInputCommand()) {
     let cmd = interaction.options.getSubcommand(false) ? [interaction.commandName, interaction.options.getSubcommand(false)].join("/") : interaction.commandName
