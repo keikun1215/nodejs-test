@@ -158,8 +158,8 @@ client.on('messageCreate', async message => {
         message.channel.send("🗑 **Deleted spam messages**")
       })
     let spml = client.channels.cache.get("1040551201235804200")
+    let spmcnt = spml.topic.split(":")[1].slice(1)+1
     await spml.setTopic(`Detected spam: ${++spmcnt}`)
-    let spmcnt = spml.topic.split(":")[1].slice(1)
     spml.send({embeds:[e({
       title: message.author.tag + " | " + message.author.id,
       description: `**#${spmcnt}**\nDeleted 3 spam messages`
