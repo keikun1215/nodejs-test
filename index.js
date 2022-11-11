@@ -162,7 +162,7 @@ client.on('messageCreate', async message => {
     await spml.setTopic(`Detected spam: ${++spmcnt}`)
     spml.send({embeds:[e({
       title: message.author.tag + " | " + message.author.id,
-      description: `**#${spmcnt+1}**\nDeleted 3 spam messages`
+      description: `**#${spmcnt}**\nDeleted 3 spam messages`
     })]})
   }
 })
