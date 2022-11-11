@@ -144,6 +144,7 @@ client.on('ready', () => {
 let spm = {}
 client.on('messageCreate', async message => {
   if(message.author.bot) return
+  if(!["1031166936102486016"].includes(message.channel.id)) return
   if(spm[String(message.author.id)]) {
     if(Date.now() - spm[String(message.author.id)].last <= 1200) {
       spm[String(message.author.id)].mps++
