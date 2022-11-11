@@ -1,4 +1,4 @@
-require("dotenv").config()//dotenv
+require("dotenv").config()//
 const yts = require('youtube-search')
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
