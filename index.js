@@ -161,7 +161,7 @@ client.on('messageCreate', message => {
     let spmcnt = spml.topic.split(":")[1].slice(1)
     spml.send({embeds:[e({
       title: message.author.tag + " | " + message.author.id,
-      description: `#${spmcnt} Deleted 3 spam messages`
+      description: `**#${spmcnt}**\nDeleted 3 spam messages`
     })]})
     spml.setTopic(`Detected spam: ${++spmcnt}`)
   }
