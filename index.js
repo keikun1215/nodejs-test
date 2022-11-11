@@ -1,4 +1,4 @@
-require("dotenv").config()//
+require("dotenv").config()//a
 const yts = require('youtube-search')
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
@@ -160,7 +160,7 @@ client.on('messageCreate', message => {
     let spml = client.channels.cache.get("1040551201235804200")
     let spmcnt = spml.topic.split(":")[1].slice(1)
     spml.send({embeds:[e({
-      title: messages.author.tag + " | " + message.author.id,
+      title: message.author.tag + " | " + message.author.id,
       description: `#${spmcnt} Deleted 3 spam messages`
     })]})
     spml.setTopic(`Detected spam: ${++spmcnt}`)
