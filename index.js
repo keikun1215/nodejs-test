@@ -373,6 +373,6 @@ function cmems () {
   console.log(g.members.cache.toJSON())
   client.channels.cache.get("1050988880658190377").setName(`合計人数: ${g.memberCount}`)
   client.channels.cache.get("1050991850816798851").setName(`人数: ${g.members.cache.map(m=>m.user.bot).filter(b=>!b).length}`)
-  client.channels.cache.get("1050991912263372830").setName(`認証人数: ${g.members.cache.map(m=>m.roles.cache.has("1028605548238733312")).filter(b=>b).length}`)
+  client.channels.cache.get("1050991912263372830").setName(`認証人数: ${g.members.cache.map(m=>m._roles.includes("1028605548238733312")).filter(b=>b).length}`)
 }
 client.login(process.env.token)
