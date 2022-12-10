@@ -139,12 +139,9 @@ const cmds = [
   }
 ]
 //1050988880658190377
-client.on("guildMemberAdd", m => {
-  let g = client.guilds.cache.get("1028186375490633769")
-  client.channels.cache.get("1050988880658190377").setName(`合計人数: ${g.memberCount}`)
-  client.channels.cache.get("1050991850816798851").setName(`人数: ${g.members.map(m=>m.bot).filter(b=>!b).length}`)
-  client.channels.cache.get("1050991912263372830").setName(`認証人数: ${g.members.map(m=>m.roles.cache.has("&1028605548238733312")).filter(b=>b).length}`)
-})
+client.on("guildMemberAdd", cmems)
+client.on("guildMemberRemove", cmems)
+client.on("roleUpdate", cmems)
 client.on('ready', () => {
   client.application.commands.set(cmds)
 })
@@ -370,5 +367,11 @@ function shimg (l) {
       responseType: "arraybuffer",
     }).then(r=>res(Buffer.from(r.data, "base64")))
   })
+}
+function cmems () {
+  let g = client.guilds.cache.get("1028186375490633769")
+  client.channels.cache.get("1050988880658190377").setName(`合計人数: ${g.memberCount}`)
+  client.channels.cache.get("1050991850816798851").setName(`人数: ${g.members.map(m=>m.bot).filter(b=>!b).length}`)
+  client.channels.cache.get("1050991912263372830").setName(`認証人数: ${g.members.map(m=>m.roles.cache.has("&1028605548238733312")).filter(b=>b).length}`)
 }
 client.login(process.env.token)
