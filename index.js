@@ -1,4 +1,4 @@
-require("dotenv").config()//a
+require("dotenv").config()
 const yts = require('youtube-search')
 const { ActionRowBuilder, ButtonBuilder, EmbedBuilder, ButtonStyle, Client, GatewayIntentBits } = require('discord.js')
 const { AudioPlayer, joinVoiceChannel, createAudioResource } = require('@discordjs/voice')
@@ -141,7 +141,7 @@ const cmds = [
 //1050988880658190377
 client.on("guildMemberAdd", cmems)
 client.on("guildMemberRemove", cmems)
-client.on("roleUpdate", cmems)
+client.on("guildMemberUpdate", cmems)
 client.on('ready', () => {
   client.application.commands.set(cmds)
 })
